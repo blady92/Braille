@@ -5,20 +5,38 @@
  */
 package pl.aagenda.braille;
 
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.JPanel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import pl.aagenda.braille.character.CharacterBuilder;
+import pl.aagenda.braille.character.Dots;
+import pl.aagenda.braille.gui.CharacterDisplayJPanel;
+
 /**
  *
  * @author mryohan
  */
 public class MainJFrame extends javax.swing.JFrame {
+    private static final Logger logger = LogManager.getLogger(MainJFrame.class);
     
-    private Configuration configuration = new Configuration();
+    private Configuration configuration = ConfigurationManager.getDefaultConfiguration();
+    
+    private List<Integer> keysPressed = new LinkedList();
+    
+    private CharacterBuilder cb = new CharacterBuilder();
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-        
+//        StringBuilder sb = new StringBuilder();
+//        for (char i = 'a'; i <= 'z'; i++) {
+//            sb.append(i);
+//        }
+//        jLabel1.setText(sb.toString());
     }
 
     /**
@@ -33,8 +51,10 @@ public class MainJFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Braille Simulator");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -57,18 +77,26 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1.setFont(configuration.getFont());
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jPanel1.setLayout(new java.awt.GridLayout());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -76,11 +104,43 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        System.out.println("Pressed " + evt.getKeyChar());
+        logger.debug("Pressed " + evt.getKeyChar());
+        keysPressed.add(Integer.valueOf(evt.getKeyCode()));
+        
+        if (configuration.getKeyLT() == evt.getKeyChar()) {
+            cb.addDot(Dots.LT);
+        }
+        if (configuration.getKeyLM() == evt.getKeyChar()) {
+            cb.addDot(Dots.LM);
+        }
+        if (configuration.getKeyLB() == evt.getKeyChar()) {
+            cb.addDot(Dots.LB);
+        }
+        if (configuration.getKeyRT() == evt.getKeyChar()) {
+            cb.addDot(Dots.RT);
+        }
+        if (configuration.getKeyRM() == evt.getKeyChar()) {
+            cb.addDot(Dots.RM);
+        }
+        if (configuration.getKeyRB() == evt.getKeyChar()) {
+            cb.addDot(Dots.RB);
+        }
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        System.out.println("Released " + evt.getKeyChar());
+        logger.debug("Released " + evt.getKeyChar());
+        keysPressed.remove(Integer.valueOf(evt.getKeyCode()));
+        if (keysPressed.isEmpty()) {
+            logger.debug("Setting new JPanel");
+//            jPanel1.removeAll();
+//            jPanel1.add(new CharacterDisplayJPanel(cb.build()));
+            JPanel child = new CharacterDisplayJPanel(cb.build());
+            jPanel1.add(child);
+            jPanel1.revalidate();
+            jPanel1.repaint();
+            logger.debug(child);
+            cb.clear();
+        }
     }//GEN-LAST:event_formKeyReleased
 
     /**
@@ -99,15 +159,11 @@ public class MainJFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.error(ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
@@ -120,6 +176,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

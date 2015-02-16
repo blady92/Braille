@@ -6,10 +6,6 @@
 package pl.aagenda.braille;
 
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,21 +19,6 @@ public class Configuration {
     private char keyRT;
     private char keyRM;
     private char keyRB;
-    
-    public Configuration() {
-        try {
-            font = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("braille.ttf"));
-            font = font.deriveFont(Font.PLAIN, 15);
-        } catch (FontFormatException | IOException ex) {
-            font = new Font("Dialog", Font.PLAIN, 15);
-        }
-        keyLT = 'e';
-        keyLM = 'd';
-        keyLB = 'c';
-        keyRT = 'o';
-        keyRM = 'k';
-        keyRB = 'm';
-    }
 
     public Font getFont() {
         return font;
