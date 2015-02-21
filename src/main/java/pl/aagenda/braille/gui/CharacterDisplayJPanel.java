@@ -2,6 +2,8 @@ package pl.aagenda.braille.gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import pl.aagenda.braille.character.Dots;
 
 /**
@@ -9,7 +11,8 @@ import pl.aagenda.braille.character.Dots;
  * @author mryohan
  */
 public class CharacterDisplayJPanel extends javax.swing.JPanel {
-    public final static int s = 32;
+    private static final Logger logger = LogManager.getLogger(CharacterDisplayJPanel.class);
+    public final static int s = 16;
     public final static int d = 8;
     private final pl.aagenda.braille.character.Character c;
 
@@ -62,17 +65,28 @@ public class CharacterDisplayJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setMinimumSize(new java.awt.Dimension(24, 40));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 24, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        logger.debug("Clicked in " + toString());
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

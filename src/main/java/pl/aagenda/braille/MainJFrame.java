@@ -48,10 +48,11 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Braille Simulator");
@@ -65,81 +66,93 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setFocusable(false);
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jScrollPane2.setViewportView(jPanel1);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(configuration.getFont());
-        jTextArea1.setRows(5);
-        jTextArea1.setFocusable(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
 
-        jLabel1.setFont(configuration.getFont());
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(169, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        logger.debug("Pressed " + evt.getKeyChar());
-        keysPressed.add(Integer.valueOf(evt.getKeyCode()));
+        logger.debug("Pressed " + evt.getKeyChar() + "(" + evt.getKeyCode() + ")");
+        char ch = evt.getKeyChar();
+        ch = Character.toLowerCase(ch);
         
-        if (configuration.getKeyLT() == evt.getKeyChar()) {
-            cb.addDot(Dots.LT);
-        }
-        if (configuration.getKeyLM() == evt.getKeyChar()) {
-            cb.addDot(Dots.LM);
-        }
-        if (configuration.getKeyLB() == evt.getKeyChar()) {
-            cb.addDot(Dots.LB);
-        }
-        if (configuration.getKeyRT() == evt.getKeyChar()) {
-            cb.addDot(Dots.RT);
-        }
-        if (configuration.getKeyRM() == evt.getKeyChar()) {
-            cb.addDot(Dots.RM);
-        }
-        if (configuration.getKeyRB() == evt.getKeyChar()) {
-            cb.addDot(Dots.RB);
+        if (ch == configuration.getKeyLB() ||
+                ch == configuration.getKeyLM() ||
+                ch == configuration.getKeyLT() ||
+                ch == configuration.getKeyRB() ||
+                ch == configuration.getKeyRM() ||
+                ch == configuration.getKeyRT()) {
+        
+            keysPressed.add(Integer.valueOf(ch));
+
+            if (configuration.getKeyLT() == ch) {
+                cb.addDot(Dots.LT);
+            }
+            if (configuration.getKeyLM() == ch) {
+                cb.addDot(Dots.LM);
+            }
+            if (configuration.getKeyLB() == ch) {
+                cb.addDot(Dots.LB);
+            }
+            if (configuration.getKeyRT() == ch) {
+                cb.addDot(Dots.RT);
+            }
+            if (configuration.getKeyRM() == ch) {
+                cb.addDot(Dots.RM);
+            }
+            if (configuration.getKeyRB() == ch) {
+                cb.addDot(Dots.RB);
+            }
         }
     }//GEN-LAST:event_formKeyPressed
 
     private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
-        logger.debug("Released " + evt.getKeyChar());
-        keysPressed.remove(Integer.valueOf(evt.getKeyCode()));
-        if (keysPressed.isEmpty()) {
-            logger.debug("Setting new JPanel");
-//            jPanel1.removeAll();
-//            jPanel1.add(new CharacterDisplayJPanel(cb.build()));
-            JPanel child = new CharacterDisplayJPanel(cb.build());
-            jPanel1.add(child);
-            jPanel1.revalidate();
-            jPanel1.repaint();
-            logger.debug(child);
-            cb.clear();
+        logger.debug("Released " + evt.getKeyChar() + "(" + evt.getKeyCode() + ")");
+        char ch = evt.getKeyChar();
+        ch = Character.toLowerCase(ch);
+        
+        if (ch == configuration.getKeyLB() ||
+                ch == configuration.getKeyLM() ||
+                ch == configuration.getKeyLT() ||
+                ch == configuration.getKeyRB() ||
+                ch == configuration.getKeyRM() ||
+                ch == configuration.getKeyRT()) {
+            keysPressed.remove(Integer.valueOf(ch));
+            if (keysPressed.isEmpty()) {
+                logger.debug("Setting new JPanel");
+                JPanel child = new CharacterDisplayJPanel(cb.build());
+                jPanel1.add(child);
+                jPanel1.revalidate();
+                jPanel1.repaint();
+                logger.debug(child);
+                cb.clear();
+            }
         }
     }//GEN-LAST:event_formKeyReleased
 
@@ -175,9 +188,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
