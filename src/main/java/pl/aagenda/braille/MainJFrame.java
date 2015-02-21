@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import pl.aagenda.braille.character.CharacterBuilder;
 import pl.aagenda.braille.character.Dots;
 import pl.aagenda.braille.gui.CharacterDisplayJPanel;
+import pl.aagenda.braille.gui.RowJPanel;
 
 /**
  *
@@ -26,6 +27,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private List<Integer> keysPressed = new LinkedList();
     
     private CharacterBuilder cb = new CharacterBuilder();
+    
+    private int row = 0;
 
     /**
      * Creates new form MainJFrame
@@ -66,7 +69,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        jPanel1.setLayout(new java.awt.GridLayout(0, 1));
         jScrollPane2.setViewportView(jPanel1);
 
         jMenu1.setText("File");
@@ -81,7 +84,7 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
@@ -89,8 +92,8 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -101,6 +104,10 @@ public class MainJFrame extends javax.swing.JFrame {
         logger.debug("Pressed " + evt.getKeyChar() + "(" + evt.getKeyCode() + ")");
         char ch = evt.getKeyChar();
         ch = Character.toLowerCase(ch);
+        
+        if (ch == 10) {
+            row++;
+        }
         
         if (ch == configuration.getKeyLB() ||
                 ch == configuration.getKeyLM() ||
@@ -147,9 +154,14 @@ public class MainJFrame extends javax.swing.JFrame {
             if (keysPressed.isEmpty()) {
                 logger.debug("Setting new JPanel");
                 JPanel child = new CharacterDisplayJPanel(cb.build());
-                jPanel1.add(child);
-                jPanel1.revalidate();
-                jPanel1.repaint();
+                logger.debug("JPanel got " + jPanel1.getComponentCount() + " components");
+                while (jPanel1.getComponentCount() <= row) {
+                    jPanel1.add(new RowJPanel());
+                }
+                JPanel panel = (JPanel) jPanel1.getComponent(row);
+                panel.add(child);
+                panel.revalidate();
+                panel.repaint();
                 logger.debug(child);
                 cb.clear();
             }
