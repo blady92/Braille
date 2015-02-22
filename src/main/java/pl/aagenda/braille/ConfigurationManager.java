@@ -22,7 +22,7 @@ public class ConfigurationManager {
         } catch (FontFormatException | IOException ex) {
             font = new Font("Dialog", Font.PLAIN, 15);
         }
-        Configuration c = new Configuration();
+        Configuration c = Configuration.getInstance();
         c.setFont(font);
         c.setKeyLT('e');
         c.setKeyLM('d');

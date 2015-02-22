@@ -12,6 +12,18 @@ import java.awt.Font;
  * @author mryohan
  */
 public class Configuration {
+    private static Configuration instance;
+    private Configuration() {
+        
+    }
+    
+    public static Configuration getInstance() {
+        if (null == instance) {
+            instance = new Configuration();
+        }
+        return instance;
+    }
+    
     private Font font;
     private char keyLT;
     private char keyLM;
