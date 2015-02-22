@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pl.aagenda.braille;
+package pl.aagenda.braille.gui;
 
+import pl.aagenda.braille.model.ConfigurationManager;
+import pl.aagenda.braille.model.Configuration;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,8 +17,8 @@ import java.util.logging.Level;
 import javax.swing.JPanel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.aagenda.braille.character.CharacterBuilder;
-import pl.aagenda.braille.character.Dots;
+import pl.aagenda.braille.model.character.CharacterBuilder;
+import pl.aagenda.braille.model.character.Dots;
 import pl.aagenda.braille.gui.CharacterDisplayJPanel;
 import pl.aagenda.braille.gui.ConfigurationJDialog;
 import pl.aagenda.braille.gui.RowJPanel;

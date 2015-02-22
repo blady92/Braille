@@ -1,7 +1,7 @@
 package pl.aagenda.braille.gui;
 
 import javax.swing.JOptionPane;
-import pl.aagenda.braille.Configuration;
+import pl.aagenda.braille.model.Configuration;
 
 /**
  *

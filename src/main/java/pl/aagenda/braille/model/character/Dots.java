@@ -1,4 +1,4 @@
-package pl.aagenda.braille.character;
+package pl.aagenda.braille.model.character;
 
 /**
  * Representation of each dot in six-dotted character.

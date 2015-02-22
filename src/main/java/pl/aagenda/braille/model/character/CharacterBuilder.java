@@ -1,4 +1,4 @@
-package pl.aagenda.braille.character;
+package pl.aagenda.braille.model.character;
 
 /**
  * Builder for six-dotted character.

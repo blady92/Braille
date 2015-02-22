@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pl.aagenda.braille.character.Dots;
+import pl.aagenda.braille.model.character.Dots;
 
 /**
  *
@@ -14,13 +14,13 @@ public class CharacterDisplayJPanel extends javax.swing.JPanel {
     private static final Logger logger = LogManager.getLogger(CharacterDisplayJPanel.class);
     public final static int s = 16;
     public final static int d = 8;
-    private final pl.aagenda.braille.character.Character c;
+    private final pl.aagenda.braille.model.character.Character c;
 
     /**
      * Creates new form CharacterDisplayJPanel
      * @param c
      */
-    public CharacterDisplayJPanel(pl.aagenda.braille.character.Character c) {
+    public CharacterDisplayJPanel(pl.aagenda.braille.model.character.Character c) {
         initComponents();
         this.c = c;
     }
