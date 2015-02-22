@@ -53,6 +53,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jPanel1.add(new RowJPanel());
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -106,7 +107,24 @@ public class MainJFrame extends javax.swing.JFrame {
         ch = Character.toLowerCase(ch);
         
         if (ch == 10) {
+            jPanel1.add(new RowJPanel());
+            jPanel1.revalidate();
+            jPanel1.repaint();
             row++;
+        }
+        
+        if (ch == 8) {
+            JPanel panel = (JPanel) jPanel1.getComponent(row);
+            if (panel.getComponentCount() > 0) {
+                panel.remove(panel.getComponentCount()-1);
+                panel.revalidate();
+                panel.repaint();
+            } else if (row > 0) {
+                jPanel1.remove(panel);
+                jPanel1.revalidate();
+                jPanel1.repaint();
+                row--;
+            }
         }
         
         if (ch == configuration.getKeyLB() ||
@@ -155,9 +173,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 logger.debug("Setting new JPanel");
                 JPanel child = new CharacterDisplayJPanel(cb.build());
                 logger.debug("JPanel got " + jPanel1.getComponentCount() + " components");
-                while (jPanel1.getComponentCount() <= row) {
-                    jPanel1.add(new RowJPanel());
-                }
                 JPanel panel = (JPanel) jPanel1.getComponent(row);
                 panel.add(child);
                 panel.revalidate();
