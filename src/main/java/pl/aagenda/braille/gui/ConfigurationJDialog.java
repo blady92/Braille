@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.aagenda.braille.gui;
 
 import javax.swing.JOptionPane;
@@ -241,6 +236,7 @@ public class ConfigurationJDialog extends javax.swing.JDialog {
         }
         return str.charAt(0);
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLB;
     private javax.swing.JButton jButtonLM;

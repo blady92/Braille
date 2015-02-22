@@ -6,12 +6,13 @@
 package pl.aagenda.braille;
 
 import java.awt.Font;
+import java.io.Serializable;
 
 /**
  *
  * @author mryohan
  */
-public class Configuration {
+public class Configuration implements Serializable{
     private static Configuration instance;
     private Configuration() {
         

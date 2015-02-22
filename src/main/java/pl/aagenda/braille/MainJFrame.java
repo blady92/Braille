@@ -5,8 +5,13 @@
  */
 package pl.aagenda.braille;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.swing.JPanel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +28,7 @@ import pl.aagenda.braille.gui.RowJPanel;
 public class MainJFrame extends javax.swing.JFrame {
     private static final Logger logger = LogManager.getLogger(MainJFrame.class);
     
-    private Configuration configuration = ConfigurationManager.getDefaultConfiguration();
+    private Configuration configuration = ConfigurationManager.getLastConfiguration();
     
     private List<Integer> keysPressed = new LinkedList();
     
@@ -191,6 +196,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         new ConfigurationJDialog(null, true).setVisible(true);
+        saveConfiguration();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -232,4 +238,17 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    private void saveConfiguration() {
+        File f = new File("config.aag");
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));
+            oos.writeObject(configuration);
+            oos.close();
+            logger.info("Configuration has been saved");
+        } catch (IOException ex) {
+            logger.error("Could not save configuration due to an exception");
+            logger.error(ex);
+        }
+    }
 }
