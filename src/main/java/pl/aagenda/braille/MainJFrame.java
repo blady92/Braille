@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import pl.aagenda.braille.character.CharacterBuilder;
 import pl.aagenda.braille.character.Dots;
 import pl.aagenda.braille.gui.CharacterDisplayJPanel;
+import pl.aagenda.braille.gui.ConfigurationJDialog;
 import pl.aagenda.braille.gui.RowJPanel;
 
 /**
@@ -35,11 +36,6 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
-//        StringBuilder sb = new StringBuilder();
-//        for (char i = 'a'; i <= 'z'; i++) {
-//            sb.append(i);
-//        }
-//        jLabel1.setText(sb.toString());
     }
 
     /**
@@ -57,6 +53,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Braille Simulator");
@@ -77,6 +74,15 @@ public class MainJFrame extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
+
+        jMenuItem1.setText("Configuration");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -183,6 +189,10 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formKeyReleased
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        new ConfigurationJDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,6 +228,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

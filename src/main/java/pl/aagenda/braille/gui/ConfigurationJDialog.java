@@ -5,11 +5,15 @@
  */
 package pl.aagenda.braille.gui;
 
+import javax.swing.JOptionPane;
+import pl.aagenda.braille.Configuration;
+
 /**
  *
  * @author mryohan
  */
 public class ConfigurationJDialog extends javax.swing.JDialog {
+    private Configuration config = Configuration.getInstance();
 
     /**
      * Creates new form ConfigurationJDialog
@@ -28,22 +32,227 @@ public class ConfigurationJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonLT = new javax.swing.JButton();
+        jButtonLM = new javax.swing.JButton();
+        jButtonLB = new javax.swing.JButton();
+        jButtonRT = new javax.swing.JButton();
+        jButtonRM = new javax.swing.JButton();
+        jButtonRB = new javax.swing.JButton();
+        jTextFieldLT = new javax.swing.JTextField();
+        jTextFieldLT.setText(
+            Character.toString(
+                Character.toLowerCase(
+                    config.getKeyLT())));
+        jTextFieldLM = new javax.swing.JTextField();
+        jTextFieldLM.setText(
+            Character.toString(
+                Character.toLowerCase(
+                    config.getKeyLM())));
+        jTextFieldLB = new javax.swing.JTextField();
+        jTextFieldLB.setText(
+            Character.toString(
+                Character.toLowerCase(
+                    config.getKeyLB())));
+        jTextFieldRT = new javax.swing.JTextField();
+        jTextFieldRT.setText(
+            Character.toString(
+                Character.toLowerCase(
+                    config.getKeyRT())));
+        jTextFieldRM = new javax.swing.JTextField();
+        jTextFieldRM.setText(
+            Character.toString(
+                Character.toLowerCase(
+                    config.getKeyRM())));
+        jTextFieldRB = new javax.swing.JTextField();
+        jTextFieldRB.setText(
+            Character.toString(
+                Character.toLowerCase(
+                    config.getKeyRB())));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Configuration");
+
+        jButtonLT.setText("Left Top");
+        jButtonLT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLTActionPerformed(evt);
+            }
+        });
+
+        jButtonLM.setText("Left Middle");
+        jButtonLM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLMActionPerformed(evt);
+            }
+        });
+
+        jButtonLB.setText("Left Bottom");
+        jButtonLB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLBActionPerformed(evt);
+            }
+        });
+
+        jButtonRT.setText("Right Top");
+        jButtonRT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRTActionPerformed(evt);
+            }
+        });
+
+        jButtonRM.setText("Right Middle");
+        jButtonRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRMActionPerformed(evt);
+            }
+        });
+
+        jButtonRB.setText("Right Bottom");
+        jButtonRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRBActionPerformed(evt);
+            }
+        });
+
+        jTextFieldLT.setEditable(false);
+
+        jTextFieldLM.setEditable(false);
+
+        jTextFieldLB.setEditable(false);
+
+        jTextFieldRT.setEditable(false);
+
+        jTextFieldRM.setEditable(false);
+
+        jTextFieldRB.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonLT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonLM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonLB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldLT, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(jTextFieldLM)
+                    .addComponent(jTextFieldLB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTextFieldRB, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(jTextFieldRM)
+                    .addComponent(jTextFieldRT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonRT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLT)
+                    .addComponent(jButtonRT)
+                    .addComponent(jTextFieldLT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldRT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLM)
+                    .addComponent(jButtonRM)
+                    .addComponent(jTextFieldLM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonLB)
+                    .addComponent(jButtonRB)
+                    .addComponent(jTextFieldLB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldRB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonLTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLTActionPerformed
+        char typed = getConfigChar();
+        if (typed != 0) {
+            typed = Character.toLowerCase(typed);
+            config.setKeyLT(typed);
+            jTextFieldLT.setText(Character.toString(typed));
+        }
+    }//GEN-LAST:event_jButtonLTActionPerformed
+
+    private void jButtonLMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLMActionPerformed
+        char typed = getConfigChar();
+        if (typed != 0) {
+            typed = Character.toLowerCase(typed);
+            config.setKeyLM(typed);
+            jTextFieldLM.setText(Character.toString(typed));
+        }
+    }//GEN-LAST:event_jButtonLMActionPerformed
+
+    private void jButtonLBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLBActionPerformed
+        char typed = getConfigChar();
+        if (typed != 0) {
+            typed = Character.toLowerCase(typed);
+            config.setKeyLB(typed);
+            jTextFieldLB.setText(Character.toString(typed));
+        }
+    }//GEN-LAST:event_jButtonLBActionPerformed
+
+    private void jButtonRTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRTActionPerformed
+        char typed = getConfigChar();
+        if (typed != 0) {
+            typed = Character.toLowerCase(typed);
+            config.setKeyRT(typed);
+            jTextFieldRT.setText(Character.toString(typed));
+        }
+    }//GEN-LAST:event_jButtonRTActionPerformed
+
+    private void jButtonRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRMActionPerformed
+        char typed = getConfigChar();
+        if (typed != 0) {
+            typed = Character.toLowerCase(typed);
+            config.setKeyRM(typed);
+            jTextFieldRM.setText(Character.toString(typed));
+        }
+    }//GEN-LAST:event_jButtonRMActionPerformed
+
+    private void jButtonRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRBActionPerformed
+        char typed = getConfigChar();
+        if (typed != 0) {
+            typed = Character.toLowerCase(typed);
+            config.setKeyRB(typed);
+            jTextFieldRB.setText(Character.toString(typed));
+        }
+    }//GEN-LAST:event_jButtonRBActionPerformed
+
+    private char getConfigChar() {
+        String str = JOptionPane.showInputDialog("Type the key you want to use for this dot (only first one matters)");
+        if (null == str || str.equals("")) {
+            return 0;
+        }
+        return str.charAt(0);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonLB;
+    private javax.swing.JButton jButtonLM;
+    private javax.swing.JButton jButtonLT;
+    private javax.swing.JButton jButtonRB;
+    private javax.swing.JButton jButtonRM;
+    private javax.swing.JButton jButtonRT;
+    private javax.swing.JTextField jTextFieldLB;
+    private javax.swing.JTextField jTextFieldLM;
+    private javax.swing.JTextField jTextFieldLT;
+    private javax.swing.JTextField jTextFieldRB;
+    private javax.swing.JTextField jTextFieldRM;
+    private javax.swing.JTextField jTextFieldRT;
     // End of variables declaration//GEN-END:variables
 }
