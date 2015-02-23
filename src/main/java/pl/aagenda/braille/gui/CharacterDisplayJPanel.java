@@ -12,7 +12,7 @@ import pl.aagenda.braille.model.character.Dots;
  */
 public class CharacterDisplayJPanel extends javax.swing.JPanel {
     private static final Logger logger = LogManager.getLogger(CharacterDisplayJPanel.class);
-    public final static int s = 16;
+    public final static int s = 12;
     public final static int d = 8;
     private final pl.aagenda.braille.model.character.Character c;
 
@@ -65,7 +65,6 @@ public class CharacterDisplayJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setMinimumSize(new java.awt.Dimension(24, 40));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -76,11 +75,11 @@ public class CharacterDisplayJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 24, Short.MAX_VALUE)
+            .addGap(0, 20, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

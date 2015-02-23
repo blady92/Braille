@@ -74,7 +74,8 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setLayout(new java.awt.GridLayout(0, 1));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Editor Pane"));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane2.setViewportView(jPanel1);
 
         jMenu1.setText("File");
