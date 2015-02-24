@@ -148,7 +148,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 ch == configuration.getKeyRM() ||
                 ch == configuration.getKeyRT()) {
         
-            keysPressed.add(Integer.valueOf(ch));
+            if (!keysPressed.contains(Integer.valueOf(ch))) {
+                keysPressed.add(Integer.valueOf(ch));
+            }
 
             if (configuration.getKeyLT() == ch) {
                 cb.addDot(Dots.LT);
