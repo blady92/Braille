@@ -141,6 +141,19 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         
+        if (ch == 32) {
+            cb.clear();
+            logger.debug("Setting new JPanel");
+            JPanel child = new CharacterDisplayJPanel(cb.build());
+            logger.debug("JPanel got " + jPanel1.getComponentCount() + " components");
+            JPanel panel = (JPanel) jPanel1.getComponent(row);
+            panel.add(child);
+            panel.revalidate();
+            panel.repaint();
+            logger.debug(child);
+            cb.clear();
+        }
+        
         if (ch == configuration.getKeyLB() ||
                 ch == configuration.getKeyLM() ||
                 ch == configuration.getKeyLT() ||
